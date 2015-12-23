@@ -13,8 +13,7 @@ each image layer.
 The Ruby *dockerfile-from-image* script is itself packaged as a [Docker image](https://registry.hub.docker.com/u/centurylink/dockerfile-from-image/)
 so it can easily be executed with the Docker *run* command:
 
-    docker run -v /var/run/docker.sock:/var/run/docker.sock \
-      centurylink/dockerfile-from-image <IMAGE_TAG_OR_ID>
+    docker run -v /var/run/docker.sock:/var/run/docker.sock bwits/dockerfile-from-image <IMAGE_TAG_OR_ID>
 
 The `<IMAGE_TAG_OR_ID>` parameter can be either an image tag (e.g. `ruby`) or
 an image ID (either the truncated form or the complete image ID).
@@ -36,12 +35,12 @@ the Dockerfile for that image being generated.
     $ docker pull ruby
     Pulling repository ruby
 
-    $ docker run --rm -v /run/docker.sock:/run/docker.sock centurylink/dockerfile-from-image
+    $ docker run --rm -v /run/docker.sock:/run/docker.sock bwits/dockerfile-from-image
     Usage: dockerfile-from-image.rb [options] <image_id>
         -f, --full-tree                  Generate Dockerfile for all parent layers
         -h, --help                       Show this message
 
-    $ docker run --rm -v /run/docker.sock:/run/docker.sock centurylink/dockerfile-from-image ruby
+    $ docker run --rm -v /run/docker.sock:/run/docker.sock bwits/dockerfile-from-image ruby
     FROM buildpack-deps:latest
     RUN useradd -g users user
     RUN apt-get update && apt-get install -y bison procps
@@ -66,7 +65,7 @@ the Dockerfile for that image being generated.
 
 ```
 $ docker pull centurylink/dockerfile-from-image
-$ alias dfimage="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock centurylink/dockerfile-from-image"
+$ alias dfimage="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock bwits/dockerfile-from-image"
 $ dfimage --help
 Usage: dockerfile-from-image.rb [options] <image_id>
     -f, --full-tree                  Generate Dockerfile for all parent layers
